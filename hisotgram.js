@@ -136,3 +136,6 @@ fetch("./report.csv")
       { responsive: true }
     );
   });
+
+//y-axis the count of the issues.
+//x-axis can be error ID.
