@@ -7,7 +7,7 @@ fetch("./report.csv")
       dynamicTyping: true,
     }).data;
 
-    // this function calculates the average severity for a given report type
+    // this function calculates the number of times an error appears
     function calculateErrorIDCounts(data, reportType) {
       let reportData = data.filter((rd) => {
         let report = rd["Report Type"];
@@ -30,6 +30,11 @@ fetch("./report.csv")
       uniqueErrorIDs = [...new Set(uniqueErrorIDs)]; // Remove duplicates
 
       //   console.log(uniqueErrorIDs);
+
+      //the errorIDsToExclude is an array of errors with large numbers, we exclude these errors to have closer look
+      // const errorIDsToExclude = ["region", "color-contrast", "link-name", "image-alt"];
+
+      // uniqueErrorIDs = uniqueErrorIDs.filter((errorID) => !errorIDsToExclude.includes(errorID));
 
       let errorIDCounts = uniqueErrorIDs.map((errorID) => {
         let count = reportData.filter((entry) => entry["Error ID"] === errorID).length;
@@ -98,5 +103,3 @@ fetch("./report.csv")
       { responsive: true }
     );
   });
-//y-axis the count of the issues.
-//x-axis can be error ID.
